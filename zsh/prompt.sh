@@ -9,13 +9,17 @@ set_prompt() {
 	# [
 	PS1="%{$fg[white]%}[%{$reset_color%}"
 
+	if [ $USER != "ben" ]; then
+		PRINT_USER="$USER@"
+	fi
+	
 	# Path: http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
-	PS1+="%{$fg[blue]%}%M %{$reset_color%}%{$fg_bold[cyan]%}${PWD/#$HOME/~}%{$reset_color%}"
+	PS1+="%{$fg[blue]%}$PRINT_USER%M %{$reset_color%}%{$fg_bold[cyan]%}${PWD/#$HOME/~}%{$reset_color%}"
 
 	# Status Code
 	PS1+='%(?.., %{$fg[red]%}%?%{$reset_color%})'
 
-	# Git
+	# Gitot equal
 	if git rev-parse --is-inside-work-tree 2> /dev/null | grep -q 'true' ; then
 		PS1+=', '
 		PS1+="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
