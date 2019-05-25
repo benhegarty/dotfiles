@@ -14,7 +14,7 @@ set_prompt() {
 	fi
 	
 	# Path: http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
-	PS1+="%{$fg[blue]%}$PRINT_USER%M %{$reset_color%}%{$fg_bold[cyan]%}${PWD/#$HOME/~}%{$reset_color%}"
+	PS1+="%{$fg_bold[green]%}$PRINT_USER%M %{$reset_color%}%{$fg_bold[blue]%}${PWD/#$HOME/~}%{$reset_color%}"
 
 	# Status Code
 	PS1+='%(?.., %{$fg[red]%}%?%{$reset_color%})'
@@ -50,7 +50,7 @@ set_prompt() {
 	fi
 
 	PS1+="%{$fg[white]%}] %{$reset_color%}% 
-  %{$fg_bold[green]%}➜%{$reset_color%} "
+  %{$fg_bold[white]%}➜%{$reset_color%} "
 }
 
 precmd_functions+=set_prompt
