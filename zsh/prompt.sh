@@ -21,7 +21,7 @@ set_prompt() {
 
 	# Gitot equal
 	if git rev-parse --is-inside-work-tree 2> /dev/null | grep -q 'true' ; then
-		PS1+=', '
+		PS1+=' '
 		PS1+="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
 		if [ $(git status --short | wc -l) -gt 0 ]; then 
 			PS1+="%{$fg[red]%}+$(git status --short | wc -l | awk '{$1=$1};1')%{$reset_color%}"
@@ -31,13 +31,13 @@ set_prompt() {
 
 	# Timer: http://stackoverflow.com/questions/2704635/is-there-a-way-to-find-the-running-time-of-the-last-executed-command-in-the-shel
 	if [[ $_elapsed[-1] -ne 0 ]]; then
-		PS1+=', '
+		PS1+=' '
 		PS1+="%{$fg[magenta]%}$_elapsed[-1]s%{$reset_color%}"
 	fi
 
 	# PID
 	if [[ $! -ne 0 ]]; then
-		PS1+=', '
+		PS1+=' '
 		PS1+="%{$fg[yellow]%}PID:$!%{$reset_color%}"
 	fi
 
@@ -45,7 +45,7 @@ set_prompt() {
 	CAN_I_RUN_SUDO=$(sudo -n uptime 2>&1|grep "load"|wc -l)
 	if [ ${CAN_I_RUN_SUDO} -gt 0 ]
 	then
-		PS1+=', '
+		PS1+=' '
 		PS1+="%{$fg_bold[red]%}SUDO%{$reset_color%}"
 	fi
 
